@@ -44,7 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         $payload = json_encode($data_input);
-        $url = 'http://127.0.0.1:5000/api/v1/predict';
+        // $url = 'http://127.0.0.1:5000/api/v1/predict';
+        $url = 'https://sagita.pythonanywhere.com/api/v1/predict';
         
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
