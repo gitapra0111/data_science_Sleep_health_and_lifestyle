@@ -1,12 +1,11 @@
 # HR-Tech & Health Analytics: Employee Stress Prediction System
 
-An end-to-end Machine Learning and Web Integration project designed to predict and analyze employee mental fatigue and sleep quality. This system empowers data-driven HR management decisions by providing real-time stress level assessments based on daily health metrics.
+An end-to-end Machine Learning project that predicts employee stress levels from health and lifestyle metrics. The user interface and model inference run together in a single Streamlit application.
 
 ## 📌 Executive Summary
-This project demonstrates a complete decoupled microservices architecture:
+This project includes:
 1. **Data Science Pipeline:** Exploratory Data Analysis (EDA) and model training using Jupyter Notebook.
-2. **AI Backend (REST API):** A Python Flask server that serves the trained Random Forest model.
-3. **Frontend Interface:** A user-friendly, responsive web application built with PHP and Bootstrap to interact with the API.
+2. **Streamlit Application:** An interactive form that loads the trained Random Forest model and displays stress predictions.
 
 ## 📊 Dataset Reference
 The machine learning model was trained using the **Sleep Health and Lifestyle Dataset**. 
@@ -15,63 +14,24 @@ You can access and download the original dataset here:
 👉 [Kaggle: Sleep Health and Lifestyle Dataset](https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset)
 
 ## 🛠️ Tech Stack & Technologies
-* **Machine Learning & Data Analysis:** Python, Pandas, Scikit-Learn, Joblib, Jupyter Notebook
-* **Backend API:** Python, Flask, Flask-CORS, Gunicorn
-* **Frontend Web:** PHP, HTML5, Bootstrap 5, cURL
-* **Deployment (Planned):** Render.com (Backend API), Web Hosting (Frontend PHP)
+* **Application & Machine Learning:** Python, Streamlit, Pandas, Scikit-Learn, Joblib, Jupyter Notebook
+* **Deployment (Planned):** Streamlit Community Cloud or another Python hosting service
 
 ## 📂 Repository Structure
 * `main.ipynb` : The complete Data Science workflow (Data Cleaning, EDA, Label Encoding, and Random Forest training achieving 100% accuracy).
-* `app.py` : The Flask REST API script acting as the bridge between the ML model and the web interface.
+* `app.py` : The Streamlit application, including the input form and model inference.
 * `model_prediksi_stres.pkl` : The exported, pre-trained Random Forest classification model.
-* `requirements.txt` : The Python dependencies required to run the backend server.
-* `index.php` : The frontend user interface that consumes the Flask API via HTTP POST requests. *(Note: Requires a PHP server to run).*
+* `requirements.txt` : The Python dependencies required to run the application.
 
+### Deployment over HTTPS
+Streamlit Community Cloud provides HTTPS automatically. For other hosting platforms, configure HTTPS through the hosting provider or reverse proxy; a PHP `.htaccess` file is not needed.
 ## 🚀 How to Run Locally
 
-### 1. Start the Machine Learning API (Backend)
-Open your terminal, navigate to the project directory, and run the following commands:
+Open a terminal in the project directory and run:
 ```bash
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the Flask server
-python app.py
-
-# Start the Web Interface (Frontend) 
-
-php -S localhost:8000
-run python app.py
-
-### 📡 API Endpoint Documentation
-URL: /api/v1/predict
-
-Method: POST
-
-Content-Type: application/json
-
-Example Request Payload:
-{
-    "Gender": 1,
-    "Age": 28,
-    "Occupation": 9,
-    "Sleep Duration": 5.5,
-    "Quality of Sleep": 4,
-    "Physical Activity Level": 30,
-    "BMI Category": 2,
-    "Heart Rate": 85,
-    "Daily Steps": 3000,
-    "Sleep Disorder": 2,
-    "Systolic_BP": 140,
-    "Diastolic_BP": 90
-}
-
-Example Success Response:
-
-{
-    "status": "success",
-    "message": "Tingkat stres berhasil diprediksi.",
-    "data": {
-        "stress_level_prediction": 8
-    }
-}
+# Start the Streamlit application
+streamlit run app.py
+```
